@@ -51,6 +51,24 @@ describe "Creating todo lists" do
 
 	end
 
+	it "returns an error when a description is less than three characters" do
+		expect(TodoList.count).to eq(0)
+
+		visit "/todo_lists"
+		click_link "New Todo list"
+		expect(page).to have_content("New Todo List")
+
+		fill_in "Title", with: "Today's list"
+		fill_in "Description", with: "hi"
+		click_button "Create Todo list"
+
+		expect(page).to have_content("error")
+		expect(TodoList.count).to eq(0)
+
+		visit "/todo_lists"
+		expect(page).to_not have_content("hi")
+	end
+
 
 
 
