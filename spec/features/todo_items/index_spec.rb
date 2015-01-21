@@ -29,9 +29,9 @@ describe "Viewing todo items" do
 
 		visit_todo_list(todo_list)
 		
-		expect(page.all('ul.todo_list_items li').size).to eq(2)
+		expect(page.all('ul.todo_items li').size).to eq(2)
 
-		within "ul.todo_list_items" do
+		within "ul.todo_items" do
 			expect(page).to have_content("Milk")
 			expect(page).to have_content("Eggs")
 		end
